@@ -1,4 +1,5 @@
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
 
@@ -6,9 +7,12 @@ export const Home = () => {
 
 	return (
 		<div className=" container text-center mt-5">
-			<div className="d-flex justify-content-end">
-				<button type="button" className="btn btn-success">Add new contact </button>
-			</div >
+
+			<Link to="/new-contact">   
+				<div className="d-flex justify-content-end">
+					<button type="button" className="btn btn-success">Add new contact </button>
+				</div >
+			</Link>
 			<div className="d-flex justify-contect-around mt-5 border">
 				<div className="col mt-3 mb-3">
 					<img src="https://picsum.photos/id/237/150/150" className="rounded-circle" alt="..."></img>
