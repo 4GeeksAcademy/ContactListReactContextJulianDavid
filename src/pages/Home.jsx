@@ -1,9 +1,13 @@
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { Link } from "react-router-dom";
+import { NewContact } from "./NewContact.jsx";
+import { useState } from "react";
 
 export const Home = () => {
 
 	const { store, dispatch } = useGlobalReducer()
+
+	const [created, setCreated] = useState("");
 
 	return (
 		<div className=" container text-center mt-5">
