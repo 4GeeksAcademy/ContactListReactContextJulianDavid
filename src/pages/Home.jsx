@@ -1,6 +1,5 @@
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { Link } from "react-router-dom";
-import { NewContact } from "./NewContact.jsx";
 import { useEffect, useState } from "react";
 
 export const Home = () => {
@@ -9,13 +8,13 @@ export const Home = () => {
 
 	const [contacts, setContacts ] = useState([]);
 
-	const apiUrlGet = "https://playground.4geeks.com/contact/agendas/JulianDavid/contacts"
+	const apiUrlGet = "https://playground.4geeks.com/contact/agendas/JulianDavid"
 
 	useEffect(() =>{
 		obtenerDatos();
 	}, []);
 
-	async function obtenerDatos() {
+	const obtenerDatos = async () => {
 		try {
 			const response = await fetch(apiUrlGet);
 
@@ -32,7 +31,7 @@ export const Home = () => {
 
   return (
     <div className="container text-center mt-5">
-		<div className="d-flex justify-content-end">
+		  <div className="d-flex justify-content-end">
       		<Link to="/new-contact">
           		<button type="button" className="btn btn-success mb-3">Add new contact</button>
      		</Link>
@@ -41,16 +40,12 @@ export const Home = () => {
       {contacts.map((contact) => (
         <div key={contact.id} className="d-flex justify-content-around border">
           <div className="col mt-3 mb-3">
-            <img 
-              src="https://picsum.photos/id/237/150/150" 
-              className="rounded-circle" 
-              alt="contact"
-            />
+            <img src="https://picsum.photos/id/237/150/150" className="rounded-circle" alt="contact"/>
           </div>
           <div className="col d-flex flex-column justify-content-center align-items-start">
             <h3>{contact.name}</h3>
             <div className="font-serif">
-              <i className="fa-solid fa-location-dot"></i> {contact.address}
+              <i className="fa-solid fa-location-dot"></i>{contact.address}
             </div>
             <div className="font-serif">
               <i className="fa-solid fa-phone-flip"></i> {contact.phone}
@@ -61,7 +56,7 @@ export const Home = () => {
           </div>
           <div className="col d-flex justify-content-center ms-5 mt-4">
             <i className="fa-solid fa-pencil align-end mx-5"></i>
-            <i className="fa-solid fa-trash"></i>
+            <i className="fa-solid fa-trash" style={{cursor: "pointer"}}></i>
           </div>
         </div>
       ))}

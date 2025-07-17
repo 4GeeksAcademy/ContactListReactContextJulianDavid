@@ -11,7 +11,11 @@ export const NewContact = () => {
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
 
+    // const isFormValid = name.thim()  && phone.thim() && email.thim() && address.thim();
+
+
     const createContact = async () => {
+
         try {
             const resp = await fetch(apiUrl, {
                 method: "POST",
@@ -25,14 +29,13 @@ export const NewContact = () => {
                             address: address                                        
                 }),
             });
-            
-            
             if (resp.ok) {
                 console.log("Created");
                 setName("");
                 setEmail("");
                 setPhone("");
                 setAddress("");
+                alert("Contacto creado")
             }
             else {!resp.ok 
                 const errorData = await resp.json(); 
@@ -41,7 +44,7 @@ export const NewContact = () => {
             }
         } catch (error) {
             console.error("error de red", error.message)
-        }
+        }  
     }
 
     return (
@@ -64,7 +67,7 @@ export const NewContact = () => {
                 <input type="text" className="form-control" id="addressInput" placeholder="Enter address" value={address} onChange={(e) => setAddress(e.target.value)} />
             </div>
             <div className="d-grid gap-2">
-                <button type="button" className="btn btn-primary" onClick={createContact}>Save</button>
+                <button type="submit" disabled={!name || !email || !phone || !address} className="btn btn-primary" onClick={createContact}>Save</button>
             </div >
             <Link to="/">
                 or get back to contacts
