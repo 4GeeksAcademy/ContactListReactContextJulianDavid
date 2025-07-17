@@ -1,11 +1,11 @@
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { EditContact } from "./EditContact.jsx";
 
 export const Home = () => {
 
-  // const { store, dispatch } = useGlobalReducer()
-
+  const navigate = useNavigate();
   const [contacts, setContacts] = useState([]);
 
   const apiUrlGet = "https://playground.4geeks.com/contact/agendas/JulianDavid"
@@ -73,7 +73,7 @@ export const Home = () => {
             </div>
           </div>
           <div className="col d-flex justify-content-center ms-5 mt-4">
-            <i className="fa-solid fa-pencil align-end mx-5"></i>
+            <i className="fa-solid fa-pencil align-end mx-5" style={{cursor: "pointer"}} onClick={()=> navigate(`/edit-contact/${contact.id}`)} ></i>
             <i className="fa-solid fa-trash" style={{ cursor: "pointer" }} onClick={() => {
               if (window.confirm("¿Estás seguro de eliminar este contacto?")) {
                 deleteContact(contact.id);}}}></i>
