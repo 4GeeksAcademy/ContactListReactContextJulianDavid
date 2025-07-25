@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 export const NewContact = () => {
 
     const apiUrl = "https://playground.4geeks.com/contact/agendas/JulianDavid/contacts";
+    const apiCreateUser = "https://playground.4geeks.com/contact/agendas/JulianDavid/"
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -47,32 +48,99 @@ export const NewContact = () => {
         }  
     }
 
-    return (
-        <div className="container">
-            <h1 className="text-center">Add a new contact</h1>
-            <div className="mb-3">
-                <label htmlFor="formGroupExampleInput" className="form-label"   >Full name</label>
-                <input type="text" className="form-control" id="nameInput" placeholder="Full name" value={name} onChange={(e) => setName(e.target.value)} />
+return (
+  <div className="container py-5">
+    <div className="row justify-content-center">
+      <div className="col-md-8 col-lg-6">
+        <div className="card shadow-sm">
+          <div className="card-header bg-white border-bottom-0 pt-4">
+            <h1 className="h3 text-center mb-0">Add New Contact</h1>
+          </div>
+          
+          <div className="card-body px-4 py-3">
+            <form onSubmit={(e) => { e.preventDefault(); createContact(); }}>
+              <div className="mb-4">
+                <label htmlFor="nameInput" className="form-label fw-semibold">
+                  <i className="fas fa-user me-2 text-primary"></i>
+                  Full Name
+                </label>
+                <input 
+                  type="text" 
+                  className="form-control form-control-lg" 
+                  id="nameInput" 
+                  placeholder="John Doe" 
+                  value={name} 
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+              
+              <div className="mb-4">
+                <label htmlFor="emailInput" className="form-label fw-semibold">
+                  <i className="fas fa-envelope me-2 text-primary"></i>
+                  Email Address
+                </label>
+                <input 
+                  type="email" 
+                  className="form-control form-control-lg" 
+                  id="emailInput" 
+                  placeholder="john@example.com" 
+                  value={email} 
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              
+              <div className="mb-4">
+                <label htmlFor="phoneInput" className="form-label fw-semibold">
+                  <i className="fas fa-phone me-2 text-primary"></i>
+                  Phone Number
+                </label>
+                <input 
+                  type="tel" 
+                  className="form-control form-control-lg" 
+                  id="phoneInput" 
+                  placeholder="+1 (555) 123-4567" 
+                  value={phone} 
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+              </div>
+              
+              <div className="mb-4">
+                <label htmlFor="addressInput" className="form-label fw-semibold">
+                  <i className="fas fa-map-marker-alt me-2 text-primary"></i>
+                  Address
+                </label>
+                <input 
+                  type="text" 
+                  className="form-control form-control-lg" 
+                  id="addressInput" 
+                  placeholder="123 Main St, City" 
+                  value={address} 
+                  onChange={(e) => setAddress(e.target.value)}
+                />
+              </div>
+              
+              <div className="d-grid gap-2 mt-4">
+                <button 
+                  type="submit" 
+                  disabled={!name || !email || !phone || !address} 
+                  className="btn btn-primary btn-lg"
+                >
+                  <i className="fas fa-save me-2"></i>
+                  Save Contact
+                </button>
+              </div>
+            </form>
+            
+            <div className="text-center mt-4">
+              <Link to="/" className="text-decoration-none">
+                <i className="fas fa-arrow-left me-2"></i>
+                Back to Contacts
+              </Link>
             </div>
-            <div className="mb-3">
-                <label htmlFor="formGroupExampleInput2" className="form-label" >Email</label>
-                <input type="email" className="form-control" id="emailInput" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} />
-            </div>
-            <div className="mb-3">
-                <label htmlFor="formGroupExampleInput" className="form-label">Phone</label>
-                <input type="tel" className="form-control" id="phoneInput" placeholder="Enter phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
-            </div>
-            <div className="mb-3">
-                <label htmlFor="formGroupExampleInput2" className="form-label" >Address</label>
-                <input type="text" className="form-control" id="addressInput" placeholder="Enter address" value={address} onChange={(e) => setAddress(e.target.value)} />
-            </div>
-            <div className="d-grid gap-2">
-                <button type="submit" disabled={!name || !email || !phone || !address} className="btn btn-primary" onClick={createContact}>Save</button>
-            </div >
-            <Link to="/">
-                or get back to contacts
-            </Link>
-
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  </div>
+);
 };
